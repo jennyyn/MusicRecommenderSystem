@@ -1,9 +1,12 @@
 package com.jennyyn.recommender;
 
-public class Main {
-    private static final String API_KEY = "cool";
+import com.jennyyn.recommender.view.MainFrame;
 
+public class  Main {
     public static void main(String[] args) {
-
+        // Start the GUI
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new MainFrame();
+        });
     }
 }
