@@ -46,10 +46,14 @@ public class WritingPanel extends JPanel {
         topPanel.add(modeDropdown);
         topPanel.add(rewriteButton);
 
-        // ---- Add everything to panel ----
+        // ---- Center panel (stack input/output vertically) ----
+        JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+        centerPanel.add(new JScrollPane(inputArea));
+        centerPanel.add(new JScrollPane(outputArea));
+
+        // ---- Add everything ----
         add(topPanel, BorderLayout.NORTH);
-        add(new JScrollPane(inputArea), BorderLayout.WEST);
-        add(new JScrollPane(outputArea), BorderLayout.EAST);
+        add(centerPanel, BorderLayout.CENTER);
     }
 
     /** Called by controller to update the result area */
