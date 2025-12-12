@@ -1,6 +1,5 @@
 package com.jennyyn.recommender.view;
 
-
 import com.jennyyn.recommender.controller.MainController;
 
 import javax.swing.*;
@@ -12,11 +11,9 @@ public class WritingPanel extends JPanel {
     private final JTextArea outputArea;
     private final JComboBox<String> modeDropdown;
 
-    private final MainController controller;
+    private MainController controller;
 
-    public WritingPanel(MainController controller) {
-        this.controller = controller;
-
+    public WritingPanel() {
         setLayout(new BorderLayout());
 
         // ---- Input area ----
@@ -46,6 +43,17 @@ public class WritingPanel extends JPanel {
         topPanel.add(modeDropdown);
         topPanel.add(rewriteButton);
 
+        // ---- Bottom right: Save + Load ----
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Save");
+        JButton loadButton = new JButton("Load");
+
+        saveButton.addActionListener(e -> controller.handleSaveRequest());
+        loadButton.addActionListener(e -> controller.handleLoadRequest());
+
+        bottomPanel.add(saveButton);
+        bottomPanel.add(loadButton);
+
         // ---- Center panel (stack input/output vertically) ----
         JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         centerPanel.add(new JScrollPane(inputArea));
@@ -54,10 +62,46 @@ public class WritingPanel extends JPanel {
         // ---- Add everything ----
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    /** Called by controller to update the result area */
+    // shows the session
+    public int showSessionSelectionDialog(String[] options) {
+        return JOptionPane.showOptionDialog(
+                this,
+                "Select a session to load:",
+                "Load Session",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+    }
+
+
+    public void setController(MainController controller) {
+        this.controller = controller;
+    }
+
+    public String getOriginalText() {
+        return inputArea.getText();
+    }
+
+    public void setOriginalText(String text) {
+        inputArea.setText(text);
+    }
+
+    public String getRewrittenText() {
+        return outputArea.getText();
+    }
+
+    public void setRewrittenText(String text) {
+        outputArea.setText(text);
+    }
+
     public void setOutputText(String text) {
         outputArea.setText(text);
     }
+
 }

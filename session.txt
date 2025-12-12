@@ -1,0 +1,35 @@
+Amazing work, but can you fix paragraph 1?
+
+-----
+Great job overall! Could you please revise paragraph 1? Thank you.
+---SESSION START---
+Hello, I was wondering when the assignment was due?
+----
+Dear [Recipient's Name],
+
+I hope this message finds you well. Could you please let me know the due date for the assignment? 
+
+Thank you.
+
+Best regards,  
+[Your Name]
+---SESSION END---
+
+---SESSION START---
+The girl walked into the haunted house
+----
+With a heart pounding like a cautious drum, the girl stepped through the creaking threshold of the haunted house, the air thick with a sinister whisper of forgotten tales. Shadows danced around her, flitting like playful specters, as she ventured deeper into the eerie embrace of the unknown. Each creak of the aged floorboards beneath her feet sent a shiver up her spine, a thrilling invitation from the phantoms of the past, urging her to explore their haunted domain.
+---SESSION END---
+
+---SESSION START---
+Sorry can't go, got work
+----
+I regret to inform you that I am unable to attend due to work commitments.
+---SESSION END---
+
+---SESSION START---
+There was a dog named Spots.
+----
+In a sun-drenched village painted with the hues of joy, there lived a spirited canine known as Spots. With a coat adorned in a playful patchwork of white and brown, he was more than just a dog; he was a bundle of enthusiasm wrapped in fur, a loyal companion whose heart beat in rhythm with the adventures that awaited him.
+---SESSION END---
+

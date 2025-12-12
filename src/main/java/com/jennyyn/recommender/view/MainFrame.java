@@ -9,15 +9,19 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private final WritingPanel writingPanel;
+    private final MainController controller;
 
     public MainFrame() {
         super("Writing Assistant");
 
-        // Create controller AFTER UI exists
-        MainController controller = new MainController(this);
+        // Create WritingPanel first
+        writingPanel = new WritingPanel();
 
-        // Create main panel and pass controller to it
-        writingPanel = new WritingPanel(controller);
+        //Create controller and pass references
+        controller = new MainController(this, writingPanel);
+
+        //Put controller into WritingPanel
+        writingPanel.setController(controller);
 
         setLayout(new BorderLayout());
         add(writingPanel, BorderLayout.CENTER);
