@@ -19,11 +19,15 @@ public class WritingPanel extends JPanel {
         // ---- Input area ----
         inputArea = new JTextArea(8, 40);
         inputArea.setBorder(BorderFactory.createTitledBorder("Original Text"));
+        inputArea.setLineWrap(true);        // enable line wrapping
+        inputArea.setWrapStyleWord(true);   // wrap at word boundaries
 
         // ---- Output area ----
         outputArea = new JTextArea(8, 40);
         outputArea.setEditable(false);
         outputArea.setBorder(BorderFactory.createTitledBorder("Rewritten Text"));
+        outputArea.setLineWrap(true);
+        outputArea.setWrapStyleWord(true);
 
         // ---- Mode dropdown ----
         String[] modes = {"Creative", "Academic", "Professional"};
