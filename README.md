@@ -17,4 +17,4 @@
 - Observer: UI updates
 
 ## Demo: 
-Assignment #3: https://youtu.be/6pn2SZGxsEI
+Assignment #3: https://youtu.be/4iZehUSWglI?si=71g1zYqXqEQC3HbC
