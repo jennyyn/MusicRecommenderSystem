@@ -76,3 +76,9 @@ Today is a beautiful day. How was your day?
 It's a lovely day today. How has your day been?
 ---SESSION END---
 
+---SESSION START---
+Hello, is this gonna work?
+----
+
+---SESSION END---
+

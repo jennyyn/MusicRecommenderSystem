@@ -17,6 +17,11 @@ public class MainController {
     private final WritingPanel writingPanel;
     private final FileService fileService;
 
+    //handling API request limits
+    private long lastApiCall = 0;
+    private static final long MIN_DELAY = 20_000; // 20 seconds
+
+
 
     public MainController(MainFrame mainFrame, WritingPanel writingPanel) {
         this.apiService = new APIService();
@@ -26,7 +31,7 @@ public class MainController {
     }
 
     public void handleRewriteRequest(String text, String mode) {
-        // Check for empty input first
+        // 1. Check for empty input first
         if (text == null || text.trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     null,
@@ -37,8 +42,21 @@ public class MainController {
             return; // stop further execution
         }
 
-        WritingStrategy strategy;
+        // 2. rate limit check BEFORE sending API request
+        long now = System.currentTimeMillis();
+        if (now - lastApiCall < MIN_DELAY) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "You're sending requests too quickly. Please wait a few seconds.",
+                    "Rate Limit",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+        lastApiCall = now; // update the timestamp
 
+        //3. strategy selection
+        WritingStrategy strategy;
         switch (mode) {
             case "Creative": strategy = new CreativeStrategy(); break;
             case "Academic": strategy = new AcademicStrategy(); break;
@@ -49,6 +67,14 @@ public class MainController {
         try {
             RewriteResult result = apiService.rewriteText(text, strategy);
             mainFrame.displayResult(result.getRewrittenText());
+
+        } catch (RateLimitException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "You're making too many requests. Wait a few seconds before trying again.",
+                    "API Rate Limit Hit",
+                    JOptionPane.WARNING_MESSAGE
+            );
         } catch (Exception e) {
             // Show an error dialog if API call fails
             JOptionPane.showMessageDialog(

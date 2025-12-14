@@ -9,6 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpClient;
 import java.nio.charset.StandardCharsets;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -17,6 +18,7 @@ public class APIService {
 
     private final APIClient apiClient;
     private final HttpClient httpClient;
+
     public APIService() {
         this.apiClient = APIClient.getInstance();
         this.httpClient = apiClient.getHttpClient();
@@ -51,20 +53,35 @@ public class APIService {
         // Parse response
         JsonObject responseJson = JsonParser.parseString(response.body()).getAsJsonObject();
 
-        if (responseJson.has("choices") && responseJson.getAsJsonArray("choices").size() > 0) {
-            JsonObject firstChoice = responseJson.getAsJsonArray("choices").get(0).getAsJsonObject();
-            if (firstChoice.has("message") && firstChoice.getAsJsonObject("message").has("content")) {
-                String rewrittenText = firstChoice.getAsJsonObject("message").get("content").getAsString();
+        // SUCCESS CASE
+        if (responseJson.has("choices")) {
+            JsonObject firstChoice = responseJson
+                    .getAsJsonArray("choices")
+                    .get(0)
+                    .getAsJsonObject();
+
+            if (firstChoice.has("message") &&
+                    firstChoice.getAsJsonObject("message").has("content")) {
+
+                String rewrittenText = firstChoice
+                        .getAsJsonObject("message")
+                        .get("content")
+                        .getAsString();
+
                 return new RewriteResult(rewrittenText);
-            } else {
-                throw new Exception("Unexpected API response: 'message' or 'content' missing");
             }
-        } else if (responseJson.has("error")) {
-            String errorMessage = responseJson.getAsJsonObject("error").get("message").getAsString();
-            throw new Exception("Failed to get response from API");
-        } else {
-            throw new Exception("Unexpected API response format");
+
+            throw new Exception("Invalid API response.");
         }
+
+        // API ERROR CASE
+        if (responseJson.has("error")) {
+            // DO NOT pass OpenAI error message to UI
+            throw new Exception("Failed to contact API.");
+        }
+
+        // Unknown response shape
+        throw new Exception("Unexpected API response format.");
     }
 
 
