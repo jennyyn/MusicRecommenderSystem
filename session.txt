@@ -1,57 +1,12 @@
 ---SESSION START---
-The girl walked into the haunted house
+A
 ----
-With a heart pounding like a cautious drum, the girl stepped through the creaking threshold of the haunted house, the air thick with a sinister whisper of forgotten tales. Shadows danced around her, flitting like playful specters, as she ventured deeper into the eerie embrace of the unknown. Each creak of the aged floorboards beneath her feet sent a shiver up her spine, a thrilling invitation from the phantoms of the past, urging her to explore their haunted domain.
+B
 ---SESSION END---
 
 ---SESSION START---
-Sorry can't go, got work
+C
 ----
-I regret to inform you that I am unable to attend due to work commitments.
----SESSION END---
-
----SESSION START---
-Hello how are you doing today?
-----
-Greetings. I hope this message finds you well. How are you today?
----SESSION END---
-
----SESSION START---
-Hello how are you today?
-----
-Subject: Greetings
-
-Dear [Recipient's Name],
-
-I hope this message finds you well today.
-
-Best regards,  
-[Your Name]  
-[Your Position]  
-[Your Company]
----SESSION END---
-
----SESSION START---
-Today is a beautiful day. How was your day?
-----
-It's a lovely day today. How has your day been?
----SESSION END---
-
----SESSION START---
-Hello, is this gonna work?
-----
-
----SESSION END---
-
----SESSION START---
-Hello, how are you?
-----
-Greetings! How is the tapestry of your day unfolding?
----SESSION END---
-
----SESSION START---
-What did you talk to him about?
-----
-What topics did you discuss with him?
+D
 ---SESSION END---
 

@@ -30,6 +30,12 @@ public class APIService {
         this.httpClient = apiClient.getHttpClient();
     }
 
+    // TESTING CONSTRUCTOR — allows injecting mocks
+    public APIService(APIClient apiClient, HttpClient httpClient) {
+        this.apiClient = apiClient;
+        this.httpClient = httpClient;
+    }
+
     public void rewriteTextAsync(
             String originalText,
             WritingStrategy strategy,
