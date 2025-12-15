@@ -85,17 +85,29 @@ public class APIService {
                 .uri(URI.create("https://api.openai.com/v1/chat/completions"))
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + apiClient.getApiKey())
+                .timeout(java.time.Duration.ofSeconds(REQUEST_TIMEOUT_SECONDS)) // <-- timeout added
                 .POST(HttpRequest.BodyPublishers.ofString(json.toString(), StandardCharsets.UTF_8))
                 .build();
+
 
         if (cancelRequested) throw new InterruptedException("Request cancelled.");
 
         HttpResponse<String> response;
+
         try {
+            // Use blocking send(), but now it will fail if timeout is reached
             response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (java.net.http.HttpTimeoutException e) {
+            throw new Exception("Request timed out. Check your internet connection.");
         } catch (Exception e) {
+            if (e instanceof InterruptedException) {
+                throw new InterruptedException("Request cancelled.");
+            }
             throw new Exception("Unable to contact API. Check your internet connection.");
         }
+
+        if (cancelRequested) throw new InterruptedException("Request cancelled.");
+
 
         JsonObject responseJson = JsonParser.parseString(response.body()).getAsJsonObject();
 
