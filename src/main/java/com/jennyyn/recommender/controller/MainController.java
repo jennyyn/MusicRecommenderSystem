@@ -105,13 +105,24 @@ public class MainController {
             options[i] = "Session " + (i + 1) + ": " + snippet;
         }
 
-        // Ask the View which session to load
-        int choice = writingPanel.showSessionSelectionDialog(options);
-        if (choice >= 0) {
-            String[] data = allSessions.get(choice);
-            writingPanel.setOriginalText(data[0]);
-            writingPanel.setRewrittenText(data[1]);
-        }
+        writingPanel.showSessionListWindow(
+                options,
+
+                // --- onLoad callback ---
+                () -> {
+                    int selected = (int) writingPanel.getClientProperty("selectedIndex");
+                    String[] data = allSessions.get(selected);
+                    writingPanel.setOriginalText(data[0]);
+                    writingPanel.setRewrittenText(data[1]);
+                },
+
+                // --- onDelete callback ---
+                () -> {
+                    int selected = (int) writingPanel.getClientProperty("selectedIndex");
+                    fileService.deleteSession(selected);
+                }
+        );
+
     }
 
 }

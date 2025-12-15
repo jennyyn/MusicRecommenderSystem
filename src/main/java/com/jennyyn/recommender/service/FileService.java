@@ -71,5 +71,48 @@ public class FileService {
         }
         return sessions;
     }
+
+    public void deleteSession(int index) {
+        List<String[]> sessions = loadSession();
+
+        // Safety
+        if (index < 0 || index >= sessions.size()) {
+            return;
+        }
+
+        // Remove the chosen session
+        sessions.remove(index);
+
+        // Rewrite the whole file with remaining sessions
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SESSION_FILE))) {
+            for (String[] session : sessions) {
+                writer.write(SESSION_START);
+                writer.newLine();
+
+                // Original text (may be multi-line)
+                if (session[0] != null) {
+                    writer.write(session[0].trim());
+                }
+                writer.newLine();
+
+                writer.write(SPLIT);
+                writer.newLine();
+
+                // Rewritten text (may be multi-line)
+                if (session[1] != null) {
+                    writer.write(session[1].trim());
+                }
+                writer.newLine();
+
+                writer.write(SESSION_END);
+                writer.newLine();
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

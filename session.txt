@@ -1,20 +1,3 @@
-Amazing work, but can you fix paragraph 1?
-
------
-Great job overall! Could you please revise paragraph 1? Thank you.
----SESSION START---
-Hello, I was wondering when the assignment was due?
-----
-Dear [Recipient's Name],
-
-I hope this message finds you well. Could you please let me know the due date for the assignment? 
-
-Thank you.
-
-Best regards,  
-[Your Name]
----SESSION END---
-
 ---SESSION START---
 The girl walked into the haunted house
 ----
@@ -28,12 +11,6 @@ I regret to inform you that I am unable to attend due to work commitments.
 ---SESSION END---
 
 ---SESSION START---
-There was a dog named Spots.
-----
-In a sun-drenched village painted with the hues of joy, there lived a spirited canine known as Spots. With a coat adorned in a playful patchwork of white and brown, he was more than just a dog; he was a bundle of enthusiasm wrapped in fur, a loyal companion whose heart beat in rhythm with the adventures that awaited him.
----SESSION END---
-
----SESSION START---
 Hello how are you doing today?
 ----
 Greetings. I hope this message finds you well. How are you today?
@@ -41,7 +18,6 @@ Greetings. I hope this message finds you well. How are you today?
 
 ---SESSION START---
 Heyyy prof! hope u doin good 😅 just chillin n tryin to prep for da exam. btw, r we gonna have stuff like integrals n derivatives on it or is it just like normal stuff? also ty 4 all ur help this semester lol 🙏
-
 ----
 Subject: Question Regarding Exam Content
 
@@ -67,7 +43,7 @@ I hope this message finds you well today.
 Best regards,  
 [Your Name]  
 [Your Position]  
-[Your Company]  
+[Your Company]
 ---SESSION END---
 
 ---SESSION START---
@@ -80,5 +56,17 @@ It's a lovely day today. How has your day been?
 Hello, is this gonna work?
 ----
 
+---SESSION END---
+
+---SESSION START---
+Hello, how are you?
+----
+Greetings! How is the tapestry of your day unfolding?
+---SESSION END---
+
+---SESSION START---
+What did you talk to him about?
+----
+What topics did you discuss with him?
 ---SESSION END---
 

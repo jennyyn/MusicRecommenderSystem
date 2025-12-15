@@ -70,18 +70,70 @@ public class WritingPanel extends JPanel {
     }
 
     // shows the session
-    public int showSessionSelectionDialog(String[] options) {
-        return JOptionPane.showOptionDialog(
-                this,
-                "Select a session to load:",
-                "Load Session",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                options,
-                options[0]
-        );
+    public void showSessionListWindow(
+            String[] options,
+            Runnable onLoad,
+            Runnable onDelete
+    ) {
+        JDialog dialog = new JDialog((Frame) null, "Session History", true);
+        dialog.setSize(400, 300);
+        dialog.setLayout(new BorderLayout());
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (String s : options) listModel.addElement(s);
+
+        JList<String> list = new JList<>(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        JScrollPane scrollPane = new JScrollPane(list);
+        dialog.add(scrollPane, BorderLayout.CENTER);
+
+        // Buttons (hidden until selection)
+        JButton loadBtn = new JButton("Load Selected");
+        JButton deleteBtn = new JButton("Delete Selected");
+        loadBtn.setVisible(false);
+        deleteBtn.setVisible(false);
+
+        // Show buttons when user selects something
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                boolean selected = list.getSelectedIndex() >= 0;
+                loadBtn.setVisible(selected);
+                deleteBtn.setVisible(selected);
+            }
+        });
+
+        // Bottom button panel
+        JPanel bottom = new JPanel();
+        bottom.add(loadBtn);
+        bottom.add(deleteBtn);
+        dialog.add(bottom, BorderLayout.SOUTH);
+
+        // Button actions call Controller callbacks
+        loadBtn.addActionListener(e -> {
+            int index = list.getSelectedIndex();
+            if (index >= 0) {
+                WritingPanel.this.putClientProperty("selectedIndex", index);
+                onLoad.run();
+                dialog.dispose();
+            }
+        });
+
+        deleteBtn.addActionListener(e -> {
+            int index = list.getSelectedIndex();
+            if (index >= 0) {
+                WritingPanel.this.putClientProperty("selectedIndex", index);
+                onDelete.run();
+                listModel.remove(index);
+                loadBtn.setVisible(false);
+                deleteBtn.setVisible(false);
+            }
+        });
+
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }
+
 
 
     public void setController(MainController controller) {
