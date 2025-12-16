@@ -5,11 +5,16 @@
 3. `export API_KEY="your=key"`
 5. Run `Main.java`
 
-## Features
+## Features 
 - Creative writing mode
 - Professional writing mode
 - Academoc writing mode
 - Save/Load sessions
+    - allows you to save your current session or load past sessions
+- Cancel request (NEW)
+    - allows you to cancel your request to rewrite your text
+- Delete sessions (NEW)
+    - allows you to select a specific session and delete it
 
 ## Design Patterns
 - Strategy: Different writing modes
@@ -17,4 +22,5 @@
 - Observer: UI updates
 
 ## Demo: 
+Final: https://youtu.be/oTE-EoeeHTY
 Assignment #3: https://youtu.be/4iZehUSWglI?si=71g1zYqXqEQC3HbC
